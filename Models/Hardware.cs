@@ -46,7 +46,7 @@ namespace PCShop.Models
         [Display(Name = "Stock")]
         public bool EmEstoque { get; set; }
 
-        public int CategoraId { get; set; }
+        public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
     }
 }
