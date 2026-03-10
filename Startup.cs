@@ -1,5 +1,7 @@
 ﻿using PCShop.Context;
 using Microsoft.EntityFrameworkCore;
+using PCShop.Repositories.Interfaces;
+using PCShop.Repositories;
 
 namespace PCShop;
 public class Startup
@@ -16,6 +18,10 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options=>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<IHardwareRepository, HardwareRepository>();
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+
 
         services.AddControllersWithViews();
     }

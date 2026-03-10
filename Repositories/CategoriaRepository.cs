@@ -4,11 +4,11 @@ using PCShop.Repositories.Interfaces;
 
 namespace PCShop.Repositories
 {
-    public class CategoriarRepository : ICategoriaRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
         private readonly AppDbContext _context;
 
-        public CategoriarRepository(AppDbContext context)
+        public CategoriaRepository(AppDbContext context)
         {
             _context = context;
         }
