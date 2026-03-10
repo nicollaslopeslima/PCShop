@@ -1,7 +1,8 @@
 ﻿using PCShop.Context;
 using PCShop.Models;
+using PCShop.Repositories.Interfaces;
 
-namespace PCShop.Repositories.Interfaces
+namespace PCShop.Repositories
 {
     public class CategoriarRepository : ICategoriaRepository
     {

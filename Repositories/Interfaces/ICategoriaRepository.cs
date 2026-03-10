@@ -1,6 +1,6 @@
 ﻿using PCShop.Models;
 
-namespace PCShop.Repositories
+namespace PCShop.Repositories.Interfaces
 {
     public interface ICategoriaRepository
     {
