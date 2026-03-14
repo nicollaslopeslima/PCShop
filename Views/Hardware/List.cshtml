@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<PCShop.Models.Hardware>
 
-    <div>
-        <h2>Todos os Hardwares</h2>
-    </div>
+<div>
+    <h2>@ViewData["Titulo"]</h2>
+</div>
+<h2>@ViewData["Data"]</h2>
+<hr />
+<h3>@ViewBag.Total @ViewBag.TotalHardwares</h3>
+<hr />
 
-    @foreach (var hardware in Model)
-    {
-        <div>
-            <h3>@hardware.Nome</h3>
-            <p><img src="/@hardware.ImagemThumbnailUrl" class= "w-25 object-fit-contain"/></p>
-            <h3>Price: @hardware.Preco.ToString("C")</h3>
-        </div>
+@foreach (var hardware in Model)
+{
+    <div>
+        <h3>@hardware.Nome</h3>
+        <p><img src="/@hardware.ImagemThumbnailUrl" class="w-25 object-fit-contain" /></p>
+        <h3>Price: @hardware.Preco.ToString("C")</h3>
+    </div>
 }

@@ -8,6 +8,8 @@ namespace PCShop.Controllers
     {
         public IActionResult Index()
         {
+            TempData["Nome"] = "Macoratti";
+
             return View();
         }
 

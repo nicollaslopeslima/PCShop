@@ -15,7 +15,15 @@ namespace PCShop.Controllers
 
         public IActionResult List()
         {
+            ViewData["Titulo"] = "Hardwares";
+            ViewData["Data"] = DateTime.Now;
+
             var hardware = _hardwareRepository.Hardwares;
+            var totalHardwares = hardware.Count();
+
+            ViewBag.Total = "Total de Hardwares : ";
+            ViewBag.TotalHardwares = totalHardwares;
+
             return View(hardware);
         }
     }
