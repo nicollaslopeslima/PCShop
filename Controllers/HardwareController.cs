@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCShop.Models;
 using PCShop.Repositories.Interfaces;
+using PCShop.ViewModels;
 
 namespace PCShop.Controllers
 {
@@ -15,16 +16,13 @@ namespace PCShop.Controllers
 
         public IActionResult List()
         {
-            ViewData["Titulo"] = "Hardwares";
-            ViewData["Data"] = DateTime.Now;
+            //var hardware = _hardwareRepository.Hardwares;
+            //return View(hardware);
+            var hardwaresListViewModel = new HardwareListViewModel();
+            hardwaresListViewModel.Hardwares = _hardwareRepository.Hardwares;
+            hardwaresListViewModel.CategoriaAtual = "Categoria Atual";
 
-            var hardware = _hardwareRepository.Hardwares;
-            var totalHardwares = hardware.Count();
-
-            ViewBag.Total = "Total hardware : ";
-            ViewBag.TotalHardwares = totalHardwares;
-
-            return View(hardware);
+            return View(hardwaresListViewModel);
         }
     }
 }
