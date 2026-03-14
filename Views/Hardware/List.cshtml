@@ -3,16 +3,17 @@
 <div>
     <h2>@ViewData["Titulo"]</h2>
 </div>
-<h2>@ViewData["Data"]</h2>
-<hr />
-<h3>@ViewBag.Total @ViewBag.TotalHardwares</h3>
-<hr />
 
-@foreach (var hardware in Model)
-{
-    <div>
-        <h3>@hardware.Nome</h3>
-        <p><img src="/@hardware.ImagemThumbnailUrl" class="w-25 object-fit-contain" /></p>
-        <h3>Price: @hardware.Preco.ToString("C")</h3>
+<div class="container">
+    <div class="row">
+        @foreach (var hardware in Model)
+        {
+            <div class="col-sm-4 cold-md-4 col-lg-4">
+                <p><img src="/@hardware.ImagemThumbnailUrl" class="w-25 object-fit-contain img-fluid" /></p>
+                <h3>Price: @hardware.Preco.ToString("C")</h3>
+                <h4>@hardware.Nome</h4>
+                <p>@hardware.DescricaoCurta</p>
+            </div>
+        }
     </div>
-}
+</div>
