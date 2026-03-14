@@ -21,7 +21,7 @@ namespace PCShop.Controllers
             var hardware = _hardwareRepository.Hardwares;
             var totalHardwares = hardware.Count();
 
-            ViewBag.Total = "Total de Hardwares : ";
+            ViewBag.Total = "Total hardware : ";
             ViewBag.TotalHardwares = totalHardwares;
 
             return View(hardware);
