@@ -11,5 +11,7 @@ namespace PCShop.Context
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Hardware> Hardwares { get; set; }
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+
     }
 }
