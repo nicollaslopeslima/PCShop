@@ -35,5 +35,27 @@ namespace PCShop.Models
                 CarrinhoCompraId = carrinhoId
             };
         }
+
+        public void AdicionarAoCarrinho(Hardware hardware)
+        {
+            var carrinhoCompraItem = _context.CarrinhoCompraItens.SingleOrDefault(
+                s => s.Hardware.HardwareId == hardware.HardwareId &&
+                s.CarrinhoCompraId == CarrinhoCompraId);
+            if (carrinhoCompraItem == null)
+            {
+                carrinhoCompraItem = new CarrinhoCompraItem
+                {
+                    CarrinhoCompraId = CarrinhoCompraId,
+                    Hardware = hardware,
+                    Quantidade = 1
+                };
+                _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
+            }
+            else
+            {
+                carrinhoCompraItem.Quantidade++;
+            }
+            _context.SaveChanges();
+        }
     }
 }
