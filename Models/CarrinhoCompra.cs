@@ -1,4 +1,5 @@
-﻿using PCShop.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using PCShop.Context;
 
 namespace PCShop.Models
 {
@@ -80,6 +81,36 @@ namespace PCShop.Models
             }
             _context.SaveChanges();
             return quantidadeLocal;
+        }
+
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
+        {
+            return CarrinhoCompraItems ??
+                    (CarrinhoCompraItems =
+                    _context.CarrinhoCompraItens.
+                    Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                    .Include(s => s.Hardware)
+                    .ToList());
+        }
+
+        public void LimparCarrinho()
+        {
+            var carrinhoItens =
+                _context.CarrinhoCompraItens
+                .Where(c => c.CarrinhoCompraId == CarrinhoCompraId);
+
+            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
+            _context.SaveChanges();
+        }
+
+        public decimal GetCarrinhoCompraTotal()
+        {
+            var total = 
+                _context.CarrinhoCompraItens
+                .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                .Select(c => c.Hardware.Preco * c.Quantidade).Sum();
+
+            return total;
         }
     }
 }
