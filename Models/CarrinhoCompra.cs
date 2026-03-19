@@ -85,8 +85,8 @@ namespace PCShop.Models
 
         public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
         {
-            return CarrinhoCompraItems ??
-                    (CarrinhoCompraItems =
+            return CarrinhoCompraItens ??
+                    (CarrinhoCompraItens =
                     _context.CarrinhoCompraItens.
                     Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                     .Include(s => s.Hardware)
