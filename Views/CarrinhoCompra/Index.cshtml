@@ -1,0 +1,61 @@
+﻿@model CarrinhoCompraViewModel
+
+<div class="container">
+    <div class="row">
+
+
+        <img src="~/images/cart_icon.png">
+
+        <div>
+            <h4> Shopping cart :</h4>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Hardware</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(var item in Model.CarrinhoCompra.CarrinhoCompraItens)
+                {
+                    <tr>
+                        <td class="text-center">@item.Quantidade</td>
+                        <td class="text-left">@item.Hardware.Nome</td>
+                        <td class="text-right">@item.Hardware.Preco.ToString("c")</td>
+
+                        <td class="text-right">
+                            @((item.Quantidade * item.Hardware.Preco).ToString("c"))))
+                        </td>
+
+                        <td class="text-center">
+                            <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinho"
+                               asp-route-lancheId="@item.Hardware.HardwareId"> <img src="~/images/remove_icon.png""/>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.CarrinhoCompraTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-right">
+            <div class="btn-group">
+                <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Checkout</a>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" asp-controller="Hardware" asp-action="List">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
