@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PCShop.Repositories.Interfaces;
 using PCShop.Repositories;
+using PCShop.Models;
 
 namespace PCShop;
 public class Startup
@@ -21,8 +22,8 @@ public class Startup
 
         services.AddTransient<IHardwareRepository, HardwareRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
-
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
 
         services.AddControllersWithViews();
 
