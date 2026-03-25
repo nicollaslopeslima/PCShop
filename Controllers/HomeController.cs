@@ -1,16 +1,28 @@
 ﻿using PCShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
+using PCShop.Repositories.Interfaces;
+using PCShop.ViewModels;
 
 namespace PCShop.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            TempData["Nome"] = "Macoratti";
+        private readonly IHardwareRepository _hardwareRepository;
 
-            return View();
+        public HomeController(IHardwareRepository hardwareRepository)
+        {
+            _hardwareRepository = hardwareRepository;
+        }
+
+        public IActionResult Index()
+        { 
+            var homeViewModel = new HomeViewModel
+            {
+                HardwaresPreferidos = _hardwareRepository.HardwaresPreferidos
+            };
+            return View(homeViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
